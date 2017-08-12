@@ -14,7 +14,7 @@ export function* fetchFeed() {
 export function* fetchNextFeed(action) {
   try {
     const { lastPostName } = action.payload;
-    const nextFeed = yield call(RedditAPI.fetchNextFeed, lastPostName);
+    const nextFeed = yield call(RedditAPI.fetchNextFeed, '', lastPostName);
     yield put({ type: FETCH_NEXT_FEED.SUCCESS, payload: nextFeed.data.children });
   } catch (error) {
     yield put({ type: FETCH_NEXT_FEED.ERROR, error });

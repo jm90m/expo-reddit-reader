@@ -1,7 +1,11 @@
 import { spawn, all } from 'redux-saga/effects';
 import { watchFetchFeed, watchFetchNextFeed } from './feed-saga';
 import { watchFetchComments } from './current-post-saga';
-import { watchFetchAllSubreddits } from './subreddit-saga';
+import {
+  watchFetchAllSubreddits,
+  watchFetchSubredditFeed,
+  watchFetchSubredditNextFeed,
+} from './subreddit-saga';
 
 function* rootSaga() {
   yield all([
@@ -9,6 +13,8 @@ function* rootSaga() {
     spawn(watchFetchNextFeed),
     spawn(watchFetchComments),
     spawn(watchFetchAllSubreddits),
+    spawn(watchFetchSubredditFeed),
+    spawn(watchFetchSubredditNextFeed),
   ]);
 }
 

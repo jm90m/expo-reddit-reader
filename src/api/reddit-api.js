@@ -15,12 +15,12 @@ async function sendRequest(url, requestParams) {
 }
 
 class RedditAPI {
-  static async getFeed() {
-    return sendRequest(`${baseUrl}${jsonPostfix}`);
+  static async getFeed(subreddit = '') {
+    return sendRequest(`${baseUrl}${subreddit}${jsonPostfix}`);
   }
 
-  static async fetchNextFeed(lastPostName) {
-    return sendRequest(`${baseUrl}${jsonPostfix}?count=25&after=${lastPostName}`);
+  static async fetchNextFeed(subreddit = '', lastPostName) {
+    return sendRequest(`${baseUrl}${subreddit}${jsonPostfix}?count=25&after=${lastPostName}`);
   }
 
   static async getComments(permalink) {
@@ -29,6 +29,10 @@ class RedditAPI {
 
   static async getSubreddits() {
     return sendRequest(`${baseUrl}${subRedditsPostfix}`);
+  }
+
+  static async getNextSubreddits() {
+
   }
 }
 

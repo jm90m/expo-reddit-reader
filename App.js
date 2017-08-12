@@ -5,6 +5,7 @@ import configureStore from 'state/configure-store';
 import FeedScreen from 'screens/feed-screen';
 import CurrentPostScreen from 'screens/current-post-screen.js';
 import FindSubredditScreen from 'screens/find-subreddit-screen';
+import SubredditFeedScreen from 'screens/subreddit-feed-screen';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import styled from 'styled-components/native';
 
@@ -38,15 +39,27 @@ const AppNavigation = TabNavigator(
         },
         feedStackNavigatorOptions,
       ),
-      navigationOptions: ({ navigation }) => {
-        console.log('NAVIGATION_OPTION', navigation.state.key);
-        return {
-          tabBarVisible: navigation.state.key !== 'Post',
-        };
-      },
+      navigationOptions: {
+        tabBar: (state, acc) => {
+          return {
+            label: '',
+            visible: (acc && acc.visible !== 'undefined') ? acc.visible : true,
+          }
+        },
+      }
     },
     FindSubredditScreen: {
-      screen: FindSubredditScreen,
+      screen: StackNavigator({
+        FindSubredditScreen: {
+          screen: FindSubredditScreen,
+        },
+        SubredditFeedScreen: {
+          screen: SubredditFeedScreen,
+        },
+        Post: {
+          screen: CurrentPostScreen,
+        },
+      }),
     },
   },
   tabNavigatorConfig,

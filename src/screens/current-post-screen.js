@@ -22,12 +22,12 @@ const mapDispatchToProps = dispatch => ({
 
 class CurrentPostScreen extends Component {
   componentDidMount() {
-    const { permalink } = this.props.navigation.state.params;
+    const { permalink } = this.props.navigation.state.params.postData;
     this.props.fetchCurrentPostComments(permalink);
   }
   render() {
     const { comments, navigation, loading } = this.props;
-    const { subreddit, title, num_comments, score, preview } = navigation.state.params;
+    const { subreddit, title, num_comments, score, preview } = navigation.state.params.postData;
     let previewImage = RedditDataParser.getPreviewImage(preview);
 
     return (

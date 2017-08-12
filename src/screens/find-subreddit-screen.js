@@ -57,6 +57,7 @@ const mapDispatchToProps = dispatch => ({
 
 class FindSubredditScreen extends Component {
   static navigationOptions = {
+    header: null,
     tabBarIcon: ({ tintColor }) => <Icon name={'search'} size={30} color={tintColor} />,
   };
 
@@ -66,7 +67,7 @@ class FindSubredditScreen extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(props.subreddits),
     };
-    this.navigateToSubreddit = this.navigateToSubreddit.bind(this);
+    this.renderRow = this.renderRow.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,17 +80,17 @@ class FindSubredditScreen extends Component {
     this.props.fetchAllSubreddits();
   }
 
-  navigateToSubreddit() {}
-
   renderRow(rowData) {
     console.log(rowData);
     const subreddit = rowData.data;
-    const { display_name_prefixed, icon_img } = subreddit;
+    const { display_name_prefixed, icon_img, url } = subreddit;
     const subredditIcon = icon_img === ''
       ? <EmptySubredditIcon />
       : <SubredditIcon source={{ uri: icon_img }} />;
     return (
-      <TouchableOpacity onPress={this.navigateToSubreddit}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('SubredditFeedScreen', { subreddit: url })}
+      >
         <Subreddit>
           {subredditIcon}
           <SubredditText>{display_name_prefixed}</SubredditText>

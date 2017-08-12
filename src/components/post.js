@@ -34,9 +34,9 @@ const Title = styled.Text`
 `;
 
 const PreviewImage = styled.Image`
-  width: 100%;
-  min-height: 100;
-  max-height: 500;
+  flex: 1;
+  width: undefined;
+  height: undefined;
 `;
 
 const Footer = styled.View`
@@ -74,7 +74,7 @@ class Post extends Component {
     const { previewImage } = this.props;
     console.log(previewImage);
     if (previewImage) {
-      return <PreviewImage source={{ uri: previewImage }} resizeMode={'cover'} />;
+      return <PreviewImage source={{ uri: previewImage }} resizeMode={'contain'} />;
     }
   }
 
