@@ -17,7 +17,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchSubredditFeed: subreddit => dispatch(fetchSubredditFeed(subreddit)),
-  fetchSubredditNextFeed: (subreddit,lastPostName) => dispatch(fetchSubredditNextFeed(subreddit, lastPostName)),
+  fetchSubredditNextFeed: (subreddit, lastPostName) =>
+    dispatch(fetchSubredditNextFeed(subreddit, lastPostName)),
 });
 
 class SubredditFeedScreen extends Component {
@@ -28,7 +29,7 @@ class SubredditFeedScreen extends Component {
       dataSource: ds.cloneWithRows(props.currentFeed),
     };
     this.renderRow = this.renderRow.bind(this);
-    this.fetchMorePostsForSubreddit = this.fetchMorePostsForSubReddit.bind(this);
+    this.fetchMorePostsForSubreddit = this.fetchMorePostsForSubreddit.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +44,7 @@ class SubredditFeedScreen extends Component {
     });
   }
 
-  fetchMorePostsForSubReddit() {
+  fetchMorePostsForSubreddit() {
     const { currentFeed, navigation } = this.props;
     const { subreddit } = navigation.state.params;
     const lastPost = currentFeed[currentFeed.length - 1];

@@ -23,13 +23,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class FeedScreen extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    header: null,
-    tabBarIcon: ({ tintColor }) => <Icon color={tintColor} size={30} name={'reddit'} />,
-    tabBarVisible: navigation.state.params.hideTabBar !== null
-      ? !navigation.state.params.hideTabBar
-      : true,
-  });
+  static navigationOptions = ({ navigation, screenProps }) => {
+    const stateParams = navigation.state.params || {};
+    const hideTabBar = stateParams.hideTabBar || false;
+
+    return {
+      header: null,
+      tabBarIcon: ({ tintColor }) => <Icon color={tintColor} size={30} name={'reddit'} />,
+      tabBarVisible: hideTabBar,
+    };
+  };
 
   constructor(props) {
     super(props);

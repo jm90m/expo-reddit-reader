@@ -21,32 +21,25 @@ const tabNavigatorConfig = {
   },
 };
 
-const feedStackNavigatorOptions = {
-  headerMode: 'float',
-};
-
 const AppNavigation = TabNavigator(
   {
     Feed: {
-      screen: StackNavigator(
-        {
-          Feed: {
-            screen: FeedScreen,
-          },
-          Post: {
-            screen: CurrentPostScreen,
-          },
+      screen: StackNavigator({
+        Feed: {
+          screen: FeedScreen,
         },
-        feedStackNavigatorOptions,
-      ),
+        Post: {
+          screen: CurrentPostScreen,
+        },
+      }),
       navigationOptions: {
         tabBar: (state, acc) => {
           return {
             label: '',
-            visible: (acc && acc.visible !== 'undefined') ? acc.visible : true,
-          }
+            visible: acc && acc.visible !== 'undefined' ? acc.visible : true,
+          };
         },
-      }
+      },
     },
     FindSubredditScreen: {
       screen: StackNavigator({
