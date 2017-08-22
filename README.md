@@ -8,4 +8,7 @@ Reddit Reader built with Expo and Styled Components
 - View subreddits posts
 - View individual post with comments
 
-![Reddit Reader GIF](http://i.imgur.com/hWg2tW3.gif)
+[Reddit Reader GIF](http://imgur.com/a/vRa7t)
+
+![Reddit Reader](http://imgur.com/a/NuaUo)
+![Reddit Reader Comments](http://imgur.com/a/ddBSh)
