@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView } from 'react-native';
+import { ActivityIndicator, ListView, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchSubredditFeed, fetchSubredditNextFeed } from 'state/actions/subreddit-actions';
 import styled from 'styled-components/native';
 import RedditDataParser from 'util/reddit-data-parser';
+import Post from 'components/post';
 
 const LoadingContainer = styled.View`
   margin-top: 20;
@@ -26,7 +27,7 @@ class SubredditFeedScreen extends Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows(props.currentFeed),
+      dataSource: ds.cloneWithRows(props.currentFeed || []),
     };
     this.renderRow = this.renderRow.bind(this);
     this.fetchMorePostsForSubreddit = this.fetchMorePostsForSubreddit.bind(this);
@@ -55,7 +56,9 @@ class SubredditFeedScreen extends Component {
     const { subreddit, title, num_comments, score, preview } = rowData.data;
     const previewImage = RedditDataParser.getPreviewImage(preview);
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate('Post', rowData.data)}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('Post', { postData: rowData.data })}
+      >
         <Post
           subreddit={subreddit}
           title={title}
@@ -77,7 +80,7 @@ class SubredditFeedScreen extends Component {
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
         enableEmptySections={true}
-        onEndReached={this.fetchMorePostsForSubReddit}
+        onEndReached={this.fetchMorePostsForSubreddit}
       />
     );
   }

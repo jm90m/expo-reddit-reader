@@ -28,8 +28,7 @@ class CurrentPostScreen extends Component {
   render() {
     const { comments, navigation, loading } = this.props;
     const { subreddit, title, num_comments, score, preview } = navigation.state.params.postData;
-    let previewImage = RedditDataParser.getPreviewImage(preview);
-
+    const previewImage = RedditDataParser.getPreviewImage(preview);
     return (
       <Container>
         <Post

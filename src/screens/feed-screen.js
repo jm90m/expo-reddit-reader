@@ -23,16 +23,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class FeedScreen extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
-    const stateParams = navigation.state.params || {};
-    const hideTabBar = stateParams.hideTabBar || false;
-
-    return {
-      header: null,
-      tabBarIcon: ({ tintColor }) => <Icon color={tintColor} size={30} name={'reddit'} />,
-      tabBarVisible: hideTabBar,
-    };
-  };
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    header: null,
+    tabBarIcon: ({ tintColor }) => <Icon name={'reddit'} size={30} color={tintColor} />,
+  });
 
   constructor(props) {
     super(props);
@@ -67,8 +61,7 @@ class FeedScreen extends Component {
     const previewImage = RedditDataParser.getPreviewImage(preview);
     return (
       <TouchableOpacity
-        onPress={() =>
-          this.props.navigation.navigate('Post', { postData: rowData.data, hideTabBar: true })}
+        onPress={() => this.props.navigation.navigate('Post', { postData: rowData.data })}
       >
         <Post
           subreddit={subreddit}

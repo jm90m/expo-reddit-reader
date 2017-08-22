@@ -32,14 +32,6 @@ const AppNavigation = TabNavigator(
           screen: CurrentPostScreen,
         },
       }),
-      navigationOptions: {
-        tabBar: (state, acc) => {
-          return {
-            label: '',
-            visible: acc && acc.visible !== 'undefined' ? acc.visible : true,
-          };
-        },
-      },
     },
     FindSubredditScreen: {
       screen: StackNavigator({
