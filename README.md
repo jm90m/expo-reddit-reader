@@ -10,5 +10,6 @@ Reddit Reader built with Expo and Styled Components
 
 [Reddit Reader GIF](http://imgur.com/a/vRa7t)
 
-![Reddit Reader](http://imgur.com/a/NuaUo)
-![Reddit Reader Comments](http://imgur.com/a/ddBSh)
+![](http://i.imgur.com/uPJsEFT.png)
+
+![](http://i.imgur.com/aikAGXI.png)
