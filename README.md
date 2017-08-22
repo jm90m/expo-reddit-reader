@@ -1,6 +1,9 @@
 # expo-reddit-reader
 Reddit Reader built with Expo and Styled Components
 
+# Running the project
+To run the project simply clone the project and open with Expo. (Get expo here: http://expo.io/)
+
 # Features included:
 - View frontpage posts
 - Infinite scroll on frontpage posts
